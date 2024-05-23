@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="RecipeApp.Screens.RecipeDetails"
+             xmlns:viewModel="clr-namespace:RecipeApp.ViewModel"
+            xmlns:sf="clr-namespace:Syncfusion.Maui.TabView;assembly=Syncfusion.Maui.TabView"
+
+             Title="Recipe Details">
+
+    <ContentPage.BindingContext>
+        <viewModel:RecipeDetailsViewModel />
+    </ContentPage.BindingContext>
+
+    <StackLayout>
+        <sf:SfTabView>
+            <sf:SfTabItem Header="Ингредиенты">
+                <StackLayout>
+                    <Image Source="{Binding Recipe.img}" HeightRequest="200" Aspect="AspectFill" />
+                    <Label Text="{Binding Recipe.recipename}" FontSize="24" FontAttributes="Bold" HorizontalOptions="Center" />
+                    <Label Text="{Binding Recipe.recipedescription}" FontSize="16" HorizontalOptions="Center" />
+                    <CollectionView ItemsSource="{Binding Ingredients}">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <StackLayout Padding="5">
+                                    <Label Text="{Binding IngredientName}" FontSize="16" />
+                                    <Label Text="{Binding IngredientGroup}" FontSize="14" TextColor="Gray" />
+                                </StackLayout>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </StackLayout>
+            </sf:SfTabItem>
+
+            <sf:SfTabItem Header="Шаги">
+                <StackLayout>
+                    <Image Source="{Binding Recipe.img}" HeightRequest="200" Aspect="AspectFill" />
+                    <Label Text="{Binding Recipe.recipename}" FontSize="24" FontAttributes="Bold" HorizontalOptions="Center" />
+                    <Label Text="{Binding Recipe.recipedescription}" FontSize="16" HorizontalOptions="Center" />
+                    <CollectionView ItemsSource="{Binding Steps}">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <StackLayout Padding="5">
+                                    <Label Text="{Binding stepnumber}" FontSize="16" FontAttributes="Bold" />
+                                    <Label Text="{Binding stepdescription}" FontSize="14" />
+                                </StackLayout>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </StackLayout>
+            </sf:SfTabItem>
+        </sf:SfTabView>
+    </StackLayout>
+</ContentPage>
